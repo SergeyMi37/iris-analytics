@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Export generator="Cache" version="25">
-  <Document name="iris-analytics-sample.ZPM">
+  <Document name="iris-analytics.ZPM">
     <Module>
-      <Name>iris-analytics-sample</Name>
-      <Version>1.0.2</Version>
+      <Name>iris-analytics</Name>
+      <Version>0.1.0</Version>
       <Dependencies>
         <ModuleReference>
           <Name>dsw</Name>
