@@ -1,7 +1,9 @@
 Class Riches.Util
 {
 
-ClassMethod DebugMerge(strMessage As %String = "", ByRef pArray) As %Status
+ClassMethod DebugMerge(
+	strMessage As %String = "",
+	ByRef pArray) As %Status
 {
 	Merge ^TESTunit($I(^TESTunit)) = pArray
 	Set tValue = ""
@@ -36,7 +38,9 @@ ClassMethod GetStatusText(pStatus As %Status) As %String
 	Quit tReturn
 }
 
-ClassMethod EncodeLogicalDisplay(pLogical As %String = "", pDisplay As %String = "") As %String
+ClassMethod EncodeLogicalDisplay(
+	pLogical As %String = "",
+	pDisplay As %String = "") As %String
 {
 	Set delim = "^"
 	If (pLogical [ delim) {
@@ -49,7 +53,9 @@ ClassMethod EncodeLogicalDisplay(pLogical As %String = "", pDisplay As %String =
 	Quit tLogicalDisplay
 }
 
-ClassMethod ExecuteQueryOneValue(pQuery As %String, ByRef pResult As %String) As %Status
+ClassMethod ExecuteQueryOneValue(
+	pQuery As %String,
+	ByRef pResult As %String) As %Status
 {
 	Do ..DebugTEST("Riches.Util - ExecuteQueryOneValue")
 	Do ..DebugTEST("pQuery = "_pQuery)
@@ -68,7 +74,9 @@ ClassMethod ExecuteQueryOneValue(pQuery As %String, ByRef pResult As %String) As
 	Quit tSC
 }
 
-ClassMethod GetOptionsTableColumns(pClassname As %String = "", Output pOptions As %String) As %String
+ClassMethod GetOptionsTableColumns(
+	pClassname As %String = "",
+	Output pOptions As %String) As %String
 {
 	/*
 	Set q = """"
@@ -100,7 +108,9 @@ ClassMethod GetOptionsTableColumns(pClassname As %String = "", Output pOptions A
 	Quit pOptions
 }
 
-ClassMethod GetOptionsTableNames(pSelected As %String = "", Output pOptions As %String) As %String
+ClassMethod GetOptionsTableNames(
+	pSelected As %String = "",
+	Output pOptions As %String) As %String
 {
 	/*
   <option value="Riches.Category">Category</option>
@@ -120,7 +130,80 @@ ClassMethod GetOptionsTableNames(pSelected As %String = "", Output pOptions As %
 	Quit pOptions
 }
 
-ClassMethod OutputDebug(pAccount As %String = "", pTable As %String = "", pDebug As %String = "") As %Status
+ClassMethod ImportCSV(
+	pCSV = "/opt/irisapp/export.csv",
+	pMaxRows As %Integer = 1) As %Status
+{
+	Set timeout = 1
+	Open pCSV:("R"):timeout  // read
+	If ($TEST = 0) {
+		Set msg = "Unable to Open "_pCSV
+		Write msg,!
+		Quit $$$ERROR($$$GeneralError,msg)
+	}
+	Set comma = ","
+	Set rows = -1
+	Set cAccount = 0
+	Set cCategory = 0
+	Set cCheck = 0
+	Set cCredit = 0
+	Set cDate = 0
+	Set cDebit = 0
+	Set cMemo = 0
+	Set cMerchant = 0
+	Set cStatus = 0
+	Set cSubategory = 0
+	Try {
+		Use pCSV
+		Set tColumns = "Account,TranDate,Merchant,Category,AmountDebit,AmountCredit"
+		Set tQuery = "Insert into Riches.Transact ("_tColumns_") values "
+		For {
+			Read line
+			If ($Increment(rows) = 0) {
+				Set headers = line
+				For ii = 1:1:$Length(headers,comma) {
+					Set title = $Piece(headers,comma,ii)
+					If (title [ "Account") Set cAccount = ii
+					If (title [ "Check") Set cCheck = ii
+					If (title [ "Credit") Set cCredit = ii
+					If (title [ "Date") Set cDate = ii
+					If (title [ "Debit") Set cDebit = ii
+					If (title [ "Memo") Set cMemo = ii
+					If (title [ "Merchant") Set cMerchant = ii
+					If (title [ "Status") Set cStatus = ii
+					If (title [ "Subategory") Set cSubategory = ii
+					If '(title [ "Subategory"),(title [ "Category") Set cCategory = ii
+				}
+				Continue
+			}
+			If (rows > pMaxRows) { Quit }
+			Set tValues = "("
+			If cAccount Set tValues = tValues_$Piece(line,comma,cAccount)
+			Set tValues = tValues_comma
+			If cDate Set tValues = tValues_$Piece(line,comma,cDate)
+			Set tValues = tValues_comma
+			If cMerchant Set tValues = tValues_$Piece(line,comma,cMerchant)
+			Set tValues = tValues_comma
+			If cCategory Set tValues = tValues_$Piece(line,comma,cCategory)
+			Set tValues = tValues_comma
+			If cDebit Set tValues = tValues_$Piece(line,comma,cDebit)
+			Set tValues = tValues_comma
+			If cCredit Set tValues = tValues_$Piece(line,comma,cCredit)
+			Set tValues = tValues_")"
+			Set tSQL = tQuery_tValues
+			Set tSC = ##class(Riches.REST).PostSQL(tSQL,rows)
+		}
+	} Catch {
+	}
+	Close pCSV
+	Write $Get(headers),!
+	Quit $$$OK
+}
+
+ClassMethod OutputDebug(
+	pAccount As %String = "",
+	pTable As %String = "",
+	pDebug As %String = "") As %Status
 {
 	Do ..DebugTEST("Riches.Util - OutputDebug")
 	Do ..DebugTEST("pAccount = "_pAccount)
@@ -148,7 +231,13 @@ ClassMethod OutputDebug(pAccount As %String = "", pTable As %String = "", pDebug
 	Quit $$$OK
 }
 
-ClassMethod OutputDebugLine(pDebugLine As %String = "", pHeader As %String = 0, pId As %String = "", pAccount As %String = "", pTable As %String = "", pDebug As %String = 0) As %Status
+ClassMethod OutputDebugLine(
+	pDebugLine As %String = "",
+	pHeader As %String = 0,
+	pId As %String = "",
+	pAccount As %String = "",
+	pTable As %String = "",
+	pDebug As %String = 0) As %Status
 {
 	Do:pDebug ..DebugTEST("Riches.Util - OutputDebugLine")
 	Do:pDebug ..DebugTEST("pDebugLine = "_pDebugLine)
@@ -207,7 +296,10 @@ ClassMethod OutputDebugLine(pDebugLine As %String = "", pHeader As %String = 0, 
 	Quit $$$OK
 }
 
-ClassMethod OutputDebugPiece(pDebugPiece As %String = "", pHeader As %String = 0, pDebug As %String = 0) As %Status
+ClassMethod OutputDebugPiece(
+	pDebugPiece As %String = "",
+	pHeader As %String = 0,
+	pDebug As %String = 0) As %Status
 {
 	Do:pDebug ..DebugTEST("Riches.Util - OutputDebugPiece")
 	Do:pDebug ..DebugTEST("pDebugPiece = "_pDebugPiece)
@@ -227,7 +319,10 @@ ClassMethod OutputDebugPiece(pDebugPiece As %String = "", pHeader As %String = 0
 	Quit $$$OK
 }
 
-ClassMethod OutputRadio(pName As %String = "", pID As %String = "", pCaption As %String) As %Status
+ClassMethod OutputRadio(
+	pName As %String = "",
+	pID As %String = "",
+	pCaption As %String) As %Status
 {
 	Set q = """"
 	Set qRadio = q_"radio"_q
@@ -238,7 +333,11 @@ ClassMethod OutputRadio(pName As %String = "", pID As %String = "", pCaption As 
 	Quit $$$OK
 }
 
-ClassMethod OutputSelectTable(pName As %String = "iTable", pID As %String = "iTable", pCaption As %String = "Insert into table:", pSelected As %String) As %Status
+ClassMethod OutputSelectTable(
+	pName As %String = "iTable",
+	pID As %String = "iTable",
+	pCaption As %String = "Insert into table:",
+	pSelected As %String) As %Status
 {
 	/*
 <label for="iTable">Insert into table:</label>
@@ -262,7 +361,9 @@ ClassMethod OutputSelectTable(pName As %String = "iTable", pID As %String = "iTa
 	Quit $$$OK
 }
 
-ClassMethod QuoteJSLogicalDisplay(pLogical As %String = "", pDisplay As %String = "") As %String
+ClassMethod QuoteJSLogicalDisplay(
+	pLogical As %String = "",
+	pDisplay As %String = "") As %String
 {
 	Set tLogicalDisplay = ..EncodeLogicalDisplay(pLogical,pDisplay)
 	Quit ##class(%CSP.Page).QuoteJS(tLogicalDisplay)
