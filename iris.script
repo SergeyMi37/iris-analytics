@@ -1,4 +1,5 @@
     ; run installer to create namespace
+    zn "%SYS"
     do $SYSTEM.OBJ.Load("/opt/irisapp/Installer.cls", "ck")
     set sc = ##class(Riches.Installer).InstallRiches()
 
