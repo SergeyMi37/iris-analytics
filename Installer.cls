@@ -55,6 +55,7 @@ ClassMethod CreateWebAppIRISAPP(
 	Set cspProperties("Path") = "/usr/irissys/csp/irisapp/"
 	Set cspProperties("MatchRoles") = "%DB_IRISAPP"
         Set cspProperties("Resource") = ""
+        Set cspProperties("ServeFiles") = 1
  	Set tSC = ##class(Security.Applications).Create(cspName,.cspProperties)
 	Do tInstaller.PopNS()
 	If $$$ISERR(tSC) Throw ##class(%Installer.Exception).CreateFromStatus(tSC)
