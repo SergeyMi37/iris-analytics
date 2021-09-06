@@ -12,11 +12,10 @@ XData setup
     <Configuration>
       <Database Name="${Namespace}" Dir="/opt/${app}/data" Create="yes" Resource="%DB_${Namespace}"/>
     </Configuration>
-    <CSPApplication Url="/csp/${app}" Directory="${cspdir}${app}" ServeFiles="1" Recurse="1" MatchRoles=":%DB_${Namespace}" AuthenticationMethods="32"/>
     <Import File="${SourceDir}" Flags="ck" Recurse="1"/>
   </Namespace>
 
-<If Condition='(##class(Security.Applications).Exists("/irisapp")=0)'>
+  <If Condition='(##class(Security.Applications).Exists("/irisapp")=0)'>
     <Log Text="Creating web application /irisapp" Level="0"/>
     <RunInstall Class="Riches.Installer" Method="CreateWebAppIRISAPP"/>
   </If>
