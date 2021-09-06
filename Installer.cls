@@ -114,6 +114,7 @@ ClassMethod InstallRiches(
 		Write $system.Status.GetOneErrorText(tSC),!
 	}
 	ZN "IRISAPP"
+	Do EnableDeepSee^%SYS.cspServer("/csp/irisapp/")
 	Set tSC = ##class(Riches.Util).SQLGrantAccess()
 	ZN myNamespace
 	Quit tSC
