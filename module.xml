@@ -9,6 +9,10 @@
           <Name>dsw</Name>
           <Version>3.*</Version>
         </ModuleReference>
+        <ModuleReference>
+          <Name>iris-for-money</Name>
+          <Version>*</Version>
+        </ModuleReference>
       </Dependencies>
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
