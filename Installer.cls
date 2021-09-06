@@ -18,11 +18,11 @@ XData setup
 
 <If Condition='(##class(Security.Applications).Exists("/irisapp")=0)'>
     <Log Text="Creating web application /irisapp" Level="0"/>
-    <RunInstall Class="App.Installer" Method="CreateWebAppIRISAPP"/>
+    <RunInstall Class="Riches.Installer" Method="CreateWebAppIRISAPP"/>
   </If>
   <If Condition='(##class(Security.Applications).Exists("/restapi")=0)'>
     <Log Text="Creating web application /restapi" Level="0"/>
-    <RunInstall Class="App.Installer" Method="CreateWebAppREST"/>
+    <RunInstall Class="Riches.Installer" Method="CreateWebAppREST"/>
   </If>
 
   <IfDef Var="Password">
