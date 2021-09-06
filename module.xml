@@ -3,7 +3,7 @@
   <Document name="iris-analytics.ZPM">
     <Module>
       <Name>iris-analytics</Name>
-      <Version>0.1.1</Version>
+      <Version>0.1.2</Version>
       <Dependencies>
         <ModuleReference>
           <Name>dsw</Name>
@@ -21,7 +21,7 @@
       <Resource Name="*.DFI" />
       <Invokes>
         <Invoke Class="%DeepSee.Utils" Method="%BuildCube">
-          <Arg>CovidCube</Arg>
+          <Arg>Riches</Arg>
         </Invoke>
         <Invoke Class="dc.irisbi.covid19cube" Method="StopJournalling">
           <Arg>IRISAPP</Arg>
