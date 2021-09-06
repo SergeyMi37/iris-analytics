@@ -132,7 +132,7 @@ ClassMethod GetOptionsTableNames(
 
 ClassMethod ImportCSV(
 	pCSV = "/opt/irisapp/export.csv",
-	pMaxRows As %Integer = 1) As %Status
+	pMaxRows As %Integer = 9999) As %Status
 {
 	Set timeout = 1
 	Open pCSV:("R"):timeout  // read
