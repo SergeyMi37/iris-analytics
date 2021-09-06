@@ -23,11 +23,11 @@
 
     zn "%SYS"
     w ##class(Security.Users).UnExpireUserPasswords("*")
-    write "Modifying MDX2JSON application security...",!
-    set webName = "/mdx2json"
-    set webProperties("AutheEnabled") = 64
-    set webProperties("MatchRoles")=":%DB_IRISAPP"
+    ;write "Modifying MDX2JSON application security...",!
+    ;set webName = "/mdx2json"
+    ;set webProperties("AutheEnabled") = 64
+    ;set webProperties("MatchRoles")=":%DB_IRISAPP"
     ;set sc = ##class(Security.Applications).Modify(webName, .webProperties)
-    if sc<1 write $SYSTEM.OBJ.DisplayError(sc)
+    ;if sc<1 write $SYSTEM.OBJ.DisplayError(sc)
 
     halt
