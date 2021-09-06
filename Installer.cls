@@ -53,8 +53,8 @@ ClassMethod CreateWebAppIRISAPP(
 	Set cspProperties("DeepSeeEnabled") = 1
 	Set cspProperties("iKnowEnabled") = 0
 	Set cspProperties("Path") = "/usr/irissys/csp/irisapp/"
-	Set cspProperties("Resource") = "%DB_IRISAPP"
-	Set cspProperties("ServeFiles") = 1
+	Set cspProperties("MatchRoles") = "%DB_IRISAPP"
+        Set cspProperties("Resource") = ""
  	Set tSC = ##class(Security.Applications).Create(cspName,.cspProperties)
 	Do tInstaller.PopNS()
 	If $$$ISERR(tSC) Throw ##class(%Installer.Exception).CreateFromStatus(tSC)
@@ -80,7 +80,8 @@ ClassMethod CreateWebAppREST(
   Set cspProperties("DeepSeeEnabled") = 1
   Set cspProperties("iKnowEnabled") = 0
   Set cspProperties("DispatchClass") = "Riches.REST"
-  Set cspProperties("Resource") = "%DB_IRISAPP"
+  Set cspProperties("MatchRoles") = "%DB_IRISAPP"
+  Set cspProperties("Resource") = ""
   Set cspProperties("ServeFiles") = 1
   Set tSC = ##class(Security.Applications).Create(cspName,.cspProperties)
   Do tInstaller.PopNS()
