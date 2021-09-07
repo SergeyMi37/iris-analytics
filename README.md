@@ -47,6 +47,8 @@ Test data comes from Excel export in CSV format:
 "3/22/2021","","City of Frisco","Utilities","Water","11416638809","","76.29","","","Chase","1526.71","Reconciled"
 ```
 
+Installer code imports test data so it is available to be analyzed.
+
 The cube was generated from with:
 ```
 w ##class(%DeepSee.WizardUtils).%GenerateCubeDefinition("Riches.Transact","Riches","Riches.BI.Cube",1)
