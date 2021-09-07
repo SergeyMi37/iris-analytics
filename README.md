@@ -49,6 +49,8 @@ Test data comes from Excel export in CSV format:
 "3/22/2021","","City of Frisco","Utilities","Water","11416638809","","76.29","","","Chase","1526.71","Reconciled"
 ```
 
+raw data (https://raw.githubusercontent.com/oliverwilms/iris-analytics/master/export.csv)
+
 Installer code imports test data so it is available to be analyzed.
 
 The cube was generated from with:
