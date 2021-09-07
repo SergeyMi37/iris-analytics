@@ -16,7 +16,6 @@
     ;zw ##class(%DeepSee.WizardUtils).%GenerateCubeDefinition("dc.irisbi.covid19","CovidCube","dc.irisbi.covid19cube",1)
     ;w ##class(%DeepSee.WizardUtils).%GenerateCubeDefinition("Riches.Transact","Riches","Riches.BI.Cube",1)
     ;do $SYSTEM.OBJ.Load("/opt/irisapp/src/Riches/BI/Cube.cls", "ck")
-    ;do ##class(%DeepSee.Utils).%BuildCube("Riches")
 
     ;zpm "load /opt/irisapp/ -v"
     ;zpm "load /opt/irisapp/ -v -Dfolder=irisapp"
