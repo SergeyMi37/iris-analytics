@@ -1,4 +1,4 @@
-# iris-analytics
+# iris-analytics-for-money
 This is my InterSystems IRIS Analytics (DeepSee) solution based on iris-analytics-template. The template contains a very basic example of the BI solution which contains one source class, data, one cube, two pivots and one dashboard.
 
 ## Installation 
@@ -6,7 +6,7 @@ This is my InterSystems IRIS Analytics (DeepSee) solution based on iris-analytic
 ### ZPM
 It's packaged with ZPM so it could be installed as:
 ```
-zpm "install iris-analytics"
+zpm "install iris-analytics-for-money"
 ```
 then open http://localhost:32792/dsw/index.html#/IRISAPP
 
@@ -42,6 +42,10 @@ Install [VSCode](https://code.visualstudio.com/), [Docker](https://marketplace.v
 The Riches.* classes were originally created for iris-for-money [iris-for-money repository](https://github.com/oliverwilms/iris-for-money.git).
 
 Test data comes from Excel export in CSV format:
+```
+"Date","Check","Merchant","Category","SubCategory","Memo","Credit","Debit","Bill Pay","Debit Card","Account","Balance","Status"
+"3/22/2021","","City of Frisco","Utilities","Water","11416638809","","76.29","","","Chase","1526.71","Reconciled"
+```
 
 The cube was generated from with:
 ```
