@@ -74,6 +74,18 @@ ClassMethod ExecuteQueryOneValue(
 	Quit tSC
 }
 
+ClassMethod GetDateValue(pValue As %String) As %Date
+{
+	If ($Get(pValue) ? 1.N1"/"1.N1"/"1.N) {
+		Set tDate = $ZDATEH(pValue,8)
+		Quit tDate
+	}
+	If ($Get(pValue) ? 1.N1"-"1.N1"-"1.N) {
+		Set tDate = $ZDATEH(pValue,8)
+	}
+	Quit $Get(tDate,0)
+}
+
 ClassMethod GetOptionsTableColumns(
 	pClassname As %String = "",
 	Output pOptions As %String) As %String
