@@ -116,6 +116,8 @@ ClassMethod InstallRiches(
 	ZN "IRISAPP"
 	Do EnableDeepSee^%SYS.cspServer("/csp/irisapp/")
 	Set tSC = ##class(Riches.Util).SQLGrantAccess()
+	Set tSC = ##class(Riches.Util).ImportCSV()
+	Kill ^TESTunit
 	ZN myNamespace
 	Quit tSC
 }
