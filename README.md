@@ -8,7 +8,8 @@ It's packaged with ZPM so it could be installed as:
 ```
 zpm "install iris-analytics-for-money"
 ```
-then open http://localhost:32792/dsw/index.html#/IRISAPP
+then open http://localhost:32792/csp/irisapp/_DeepSee.UI.Analyzer.zen?CUBE=Riches
+
 
 ### Docker
 The repo is dockerised so you can clone/git pull the repo into any local directory
@@ -22,7 +23,8 @@ Open the terminal in this directory and run:
 ```
 $ docker-compose up -d
 ```
-and open then http://localhost:32792/dsw/index.html#/IRISAPP
+and open then http://localhost:32792/csp/irisapp/_DeepSee.UI.Analyzer.zen?CUBE=Riches
+
 
 Or, open the cloned folder in VSCode, start docker-compose and open the URL via VSCode menu:
 <img width="799" alt="Screenshot 2020-11-15 at 20 17 12" src="https://user-images.githubusercontent.com/2781759/99191744-ba02af00-277f-11eb-8568-e43aa9a0029c.png">
