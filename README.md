@@ -34,22 +34,15 @@ Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installi
 
 This repository is ready to code in VSCode with ObjectScript plugin.
 Install [VSCode](https://code.visualstudio.com/), [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) and [ObjectScript](https://marketplace.visualstudio.com/items?itemName=daimor.vscode-objectscript) plugin and open the folder in VSCode.
-Open /src/cls/PackageSample/ObjectScript.cls class and try to make changes - it will be compiled in running IRIS docker container.
-![docker_compose](https://user-images.githubusercontent.com/2781759/87149599-3c063700-c2b9-11ea-9250-9b5d42ec4932.gif)
 
 [Read more about folder setup for InterSystems ObjectScript](https://community.intersystems.com/post/simplified-objectscript-source-folder-structure-package-manager)
 
-The script in Installer.cls will import everything you place under /src into IRIS.
-
 ## How this sample was created
 
-The class and data were taken from iris-for-money [iris-for-money repository](https://github.com/oliverwilms/iris-for-money.git).
+The Riches.* classes were originally created for iris-for-money [iris-for-money repository](https://github.com/oliverwilms/iris-for-money.git).
 
-zpm "install csvgen" will import csvgen package which lets to create class and import data with the following line:
-```
-set file="https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/11-14-2020.csv"
-zw ##class(community.csvgen).GenerateFromURL(file,",","dc.irisbi.covid19")
-```
+Test data comes from Excel export in CSV format:
+
 The cube was generated from with:
 ```
 w ##class(%DeepSee.WizardUtils).%GenerateCubeDefinition("Riches.Transact","Riches","Riches.BI.Cube",1)
