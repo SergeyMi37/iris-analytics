@@ -181,15 +181,16 @@ ClassMethod ImportCSV(
 				Set headers = line
 				For ii = 1:1:$Length(headers,comma) {
 					Set title = $Piece(headers,comma,ii)
-					If (title [ "Account") Set cAccount = ii
-					If (title [ "Check") Set cCheck = ii
-					If (title [ "Credit") Set cCredit = ii
-					If (title [ "Date") Set cDate = ii
-					If (title [ "Debit") Set cDebit = ii
-					If (title [ "Memo") Set cMemo = ii
-					If (title [ "Merchant") Set cMerchant = ii
-					If (title [ "Status") Set cStatus = ii
-					If (title [ "Subategory") Set cSubategory = ii
+					Set title = ##class(Riches.REST).UnQuote(title)
+					If (title = "Account") Set cAccount = ii
+					If (title = "Check") Set cCheck = ii
+					If (title = "Credit") Set cCredit = ii
+					If (title = "Date") Set cDate = ii
+					If (title = "Debit") Set cDebit = ii
+					If (title = "Memo") Set cMemo = ii
+					If (title = "Merchant") Set cMerchant = ii
+					If (title = "Status") Set cStatus = ii
+					If (title = "Subategory") Set cSubategory = ii
 					If '(title [ "Subategory"),(title [ "Category") Set cCategory = ii
 				}
 				Continue
