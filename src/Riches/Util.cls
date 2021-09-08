@@ -172,6 +172,11 @@ ClassMethod ImportCSV(
 		For {
 			Read line
 			If ($Increment(rows) = 0) {
+				If ($Get(line) = "") {
+					Set msg = "Headers not found in "_pCSV
+					Write msg,!
+					Quit  // For loop
+				}
 				Set headers = line
 				For ii = 1:1:$Length(headers,comma) {
 					Set title = $Piece(headers,comma,ii)
@@ -209,6 +214,7 @@ ClassMethod ImportCSV(
 	}
 	Close pCSV
 	Write $Get(headers),!
+	Write $Get(rows)," rows imported",!
 	Quit $$$OK
 }
 
