@@ -13,7 +13,7 @@ Property SubCategory As SubCategory;
 
 Property Merchant As Merchant;
 
-Property TranDate As %Date;
+Property TranDate As %Date(MINVAL = 1);
 
 Property TranTime As %Time;
 
@@ -52,7 +52,11 @@ ClassMethod GetColumns(ByRef pColumns) As %String
 	Quit $$$OK
 }
 
-ClassMethod OutputFormField(pField As %String = "Account", pCaption As %String = "", pValue As %String = "", split As %Boolean = 0) As %Status
+ClassMethod OutputFormField(
+	pField As %String = "Account",
+	pCaption As %String = "",
+	pValue As %String = "",
+	split As %Boolean = 0) As %Status
 {
 	Do ##class(Util).DebugTEST("Riches.Transact - OutputFormField")
 	Do ##class(Util).DebugTEST("pField = "_pField)
@@ -144,7 +148,10 @@ ClassMethod OutputFormSplit() As %Status
 	Quit $$$OK
 }
 
-ClassMethod OutputTableData(pWhere As %String = "", pTrClick As %String = "window.location='Transact.csp?iAccount=#';", pMaxRows = -1) As %Status
+ClassMethod OutputTableData(
+	pWhere As %String = "",
+	pTrClick As %String = "window.location='Transact.csp?iAccount=#';",
+	pMaxRows = -1) As %Status
 {
 	Do ##class(Util).DebugTEST("Riches.Transact - OutputTableData")
 	Do ##class(Util).DebugTEST("pWhere = "_pWhere)
@@ -183,7 +190,10 @@ ClassMethod OutputTableData(pWhere As %String = "", pTrClick As %String = "windo
 	Quit tSC
 }
 
-ClassMethod SubmitFormData(ByRef pRequestData, Output pAction, Output pId) As %Status
+ClassMethod SubmitFormData(
+	ByRef pRequestData,
+	Output pAction,
+	Output pId) As %Status
 {
 	Do ##class(Util).DebugTEST("Riches.Transact - SubmitFormData")
 	Do ##class(Util).DebugMerge("pRequestData = ",.pRequestData)
