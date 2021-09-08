@@ -6,7 +6,7 @@ This is my InterSystems IRIS Analytics (DeepSee) solution based on iris-analytic
 ### ZPM
 It's packaged with ZPM so it could be installed as:
 ```
-zpm "install iris-analytics-for-money"
+zpm "install iris-analytics"
 ```
 then open http://localhost:32792/csp/irisapp/_DeepSee.UI.Analyzer.zen?CUBE=Riches
 
