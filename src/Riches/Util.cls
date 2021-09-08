@@ -181,7 +181,7 @@ ClassMethod ImportCSV(
 				Set headers = line
 				For ii = 1:1:$Length(headers,comma) {
 					Set title = $Piece(headers,comma,ii)
-					Set title = ##class(Riches.REST).UnQuote(title)
+					Set tSC = ##class(Riches.Util).UnQuote(title,.title)
 					If (title = "Account") Set cAccount = ii
 					If (title = "Check") Set cCheck = ii
 					If (title = "Credit") Set cCredit = ii
@@ -393,6 +393,58 @@ ClassMethod SQLGrantAccess() As %Status
 {
 	&sql(GRANT INSERT,SELECT,UPDATE ON Riches.Account,Riches.Category,Riches.Merchant,Riches.SubCategory,Riches.Transact TO UnknownUser)
 	if SQLCODE < 0 throw ##class(%Exception.SQL).CreateFromSQLCODE(%SQLCODE,"Grant roles")
+	Quit $$$OK
+}
+
+ClassMethod UnQuote(
+	pQuote As %String = "",
+	Output pUnQuote As %String,
+	pOutQuote As %String = "",
+	pVerbose As %Integer = 0) As %Status
+{
+	Do:pVerbose ..DebugTEST("Riches.Util - UnQuote")
+	Do:pVerbose ..DebugTEST("pQuote = "_pQuote)
+	Set boolContinue = 1
+	While boolContinue {
+		Set tFirst = $Extract(pQuote,1)
+		Set tLast = $Extract(pQuote,*)
+		If (tFirst = "'") {
+			If (tFirst = tLast) {
+				Set pQuote = $Extract(pQuote,2,*-1)
+			} Else { Set boolContinue = 0 }
+		} ElseIf (tFirst = """") {
+			If (tFirst = tLast) {
+				Set pQuote = $Extract(pQuote,2,*-1)
+			} Else { Set boolContinue = 0 }
+		} Else { Set boolContinue = 0 }
+	}
+	/*
+	// Problem with ' or #
+	Set pEscape1 = ##class(%CSP.Page).EscapeHTML(pQuote)
+	Set pEscape2 = ##class(%CSP.Page).EscapeURL(pQuote)
+	If (pQuote [ "'") {
+		Do ..DebugTEST("pEscape1 = "_pEscape1)
+		Do ..DebugTEST("pEscape2 = "_pEscape2)
+		If '(pEscape1 [ "'") {
+			Set pUnQuote = "'"_pEscape1_"'"
+		} ElseIf '(pEscape2 [ "'") {
+			Set pUnQuote = "'"_pEscape2_"'"
+		} Else {
+			Set pUnQuote = ""
+		}
+	} Else {
+		Set pUnQuote = "'"_pQuote_"'"
+	}
+	*/
+	// Problem with ' or #
+	Set pEscape = ##class(%CSP.Page).EscapeHTML(pQuote)
+		Do:pVerbose ..DebugTEST("pEscape = "_pEscape)
+	If (pQuote '= pEscape) {
+		//Do ..DebugTEST("pEscape = "_pEscape)
+	}
+	Set pUnQuote = pOutQuote_pEscape_pOutQuote
+	If (pUnQuote = "") Set pUnQuote = "''"
+	Do:pVerbose ..DebugTEST("pUnQuote = "_pUnQuote)
 	Quit $$$OK
 }
 
