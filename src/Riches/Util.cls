@@ -191,7 +191,7 @@ ClassMethod ImportCSV(
 					If (title = "Merchant") Set cMerchant = ii
 					If (title = "Status") Set cStatus = ii
 					If (title = "Subategory") Set cSubategory = ii
-					If '(title [ "Subategory"),(title [ "Category") Set cCategory = ii
+					If '(title [ "SubCategory"),(title [ "Category") Set cCategory = ii
 				}
 				Continue
 			}
