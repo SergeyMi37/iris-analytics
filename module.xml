@@ -3,7 +3,7 @@
   <Document name="iris-analytics.ZPM">
     <Module>
       <Name>iris-analytics</Name>
-      <Version>0.1.3</Version>
+      <Version>0.1.4</Version>
       <Dependencies>
         <ModuleReference>
           <Name>dsw</Name>
