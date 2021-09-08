@@ -274,11 +274,12 @@ ClassMethod UnQuoteValues(
 	Do:pVerbose ..DebugTEST("Riches.REST - UnQuoteValues")
 	Set tLength = $Length(pQuote,",")
 	Do:pVerbose ..DebugTEST("tLength = "_tLength)
+	Set tOutQuote = "'"  // Output with single quotes
 	For ii = 1:1:tLength {
 		Do:pVerbose ..DebugTEST("ii = "_ii)
 		Set tValue = $Piece(pQuote,",",ii)
 		Do:pVerbose ..DebugTEST("tValue = "_tValue)
-		Set tSC = ..UnQuote(tValue,.tUnValue)
+		Set tSC = ##class(Riches.Util).UnQuote(tValue,.tUnValue,tOutQuote)
 		Do:pVerbose ..DebugTEST("tUnValue = "_tUnValue)
 		Set $Piece(pUnQuote,",",ii) = tUnValue
 	}
