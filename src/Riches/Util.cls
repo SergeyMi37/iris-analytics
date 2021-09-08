@@ -174,6 +174,7 @@ ClassMethod ImportCSV(
 			If ($Increment(rows) = 0) {
 				If ($Get(line) = "") {
 					Set msg = "Headers not found in "_pCSV
+					Use 0
 					Write msg,!
 					Quit  // For loop
 				}
