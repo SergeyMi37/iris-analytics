@@ -118,7 +118,7 @@ ClassMethod InstallRiches(
 	Set tSC = ##class(Riches.Util).SQLGrantAccess()
 	Set tSC = ##class(Riches.Util).ImportCSV()
 	Kill ^TESTunit
-	Do ##class(%DeepSee.Utils).%BuildCube("Riches")
+	Do ##class(%DeepSee.Utils).%BuildCube("iris-for-money")
 	ZN myNamespace
 	Quit tSC
 }
