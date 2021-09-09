@@ -54,10 +54,14 @@ raw data (https://raw.githubusercontent.com/oliverwilms/iris-analytics/master/ex
 
 Installer code imports test data so it is available to be analyzed.
 
-The cube was generated from with:
+My first cube was generated from with:
 ```
 w ##class(%DeepSee.WizardUtils).%GenerateCubeDefinition("Riches.Transact","Riches","Riches.BI.Cube",1)
 ```
+
+I created another cube once I had learned how to use Analytics > Architect.
+
+Later I learned to create a dashboard with pivot table and how to export to a Container Class.
 
 ### Deployment
 To deploy this project via ZPM or docker we need: classes, data and DFI.
