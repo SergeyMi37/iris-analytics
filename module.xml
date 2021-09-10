@@ -3,7 +3,7 @@
   <Document name="iris-analytics.ZPM">
     <Module>
       <Name>iris-analytics</Name>
-      <Version>0.1.6</Version>
+      <Version>0.1.7</Version>
       <Dependencies>
         <ModuleReference>
           <Name>dsw</Name>
@@ -24,7 +24,7 @@
         </Invoke>
       </Invokes>
       <Parameter Name="folder" Value="irisapp" />
-      <FileCopy Name="dsw/irisapp.json" Target="${cspdir}dsw/configs/${folder}.json"/>
+      <FileCopy Name="/opt/irisapp/dsw/irisapp.json" Target="${cspdir}dsw/configs/${folder}.json"/>
     </Module>
   </Document>
 </Export>
