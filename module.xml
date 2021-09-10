@@ -24,7 +24,6 @@
         </Invoke>
       </Invokes>
       <Parameter Name="folder" Value="irisapp" />
-      <FileCopy Name="/opt/irisapp/dsw/irisapp.json" Target="${cspdir}dsw/configs/${folder}.json"/>
     </Module>
   </Document>
 </Export>
