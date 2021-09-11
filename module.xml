@@ -3,24 +3,15 @@
   <Document name="iris-analytics.ZPM">
     <Module>
       <Name>iris-analytics</Name>
-      <Version>0.1.9</Version>
+      <Version>0.2.0</Version>
       <Description>IRIS Analytics for Money</Description>
-      <Dependencies>
-        <ModuleReference>
-          <Name>dsw</Name>
-          <Version>3.*</Version>
-        </ModuleReference>
-      </Dependencies>
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
       <Resource Name="Riches.PKG"/>
       <Resource Name="dc.irisbi.covid19D.GBL" />
       <Resource Name="*.DFI" />
       <Invokes>
-        <Invoke Class="Riches.Util" Method="ImportCSV"></Invoke>
-        <Invoke Class="%DeepSee.Utils" Method="%BuildCube">
-          <Arg>"iris-for-money"</Arg>
-        </Invoke>
+        <Invoke Class="Riches.Util" Method="InstallHelper"></Invoke>
       </Invokes>
     </Module>
   </Document>
