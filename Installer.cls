@@ -114,11 +114,12 @@ ClassMethod InstallRiches(
 		Write $system.Status.GetOneErrorText(tSC),!
 	}
 	ZN "IRISAPP"
-	Do EnableDeepSee^%SYS.cspServer("/csp/irisapp/")
-	Set tSC = ##class(Riches.Util).SQLGrantAccess()
-	Set tSC = ##class(Riches.Util).ImportCSV()
-	Kill ^TESTunit
-	Do ##class(%DeepSee.Utils).%BuildCube("iris-for-money")
+	Set tSC = ##class(Riches.Util).InstallHelper()
+	//Do EnableDeepSee^%SYS.cspServer("/csp/irisapp/")
+	//Set tSC = ##class(Riches.Util).SQLGrantAccess()
+	//Set tSC = ##class(Riches.Util).ImportCSV()
+	//Kill ^TESTunit
+	//Do ##class(%DeepSee.Utils).%BuildCube("iris-for-money")
 	ZN myNamespace
 	Quit tSC
 }
