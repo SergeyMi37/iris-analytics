@@ -3,14 +3,14 @@
   <Document name="iris-analytics.ZPM">
     <Module>
       <Name>iris-analytics</Name>
-      <Version>0.2.1</Version>
+      <Version>0.2.2</Version>
       <Description>IRIS Analytics for Money</Description>
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
       <Resource Name="Riches.PKG"/>
       <Resource Name="dc.irisbi.covid19D.GBL" />
       <Resource Name="*.DFI" />
-      <FileCopy Name="data/export.csv" Target="/opt/irisapp/export.csv"/>
+      <FileCopy Name="data/export.csv" Target="{libdir}export.csv"/>
       <Invokes>
         <Invoke Class="Riches.Util" Method="InstallHelper"></Invoke>
       </Invokes>
