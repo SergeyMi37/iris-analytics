@@ -10,7 +10,7 @@
       <Resource Name="Riches.PKG"/>
       <Resource Name="dc.irisbi.covid19D.GBL" />
       <Resource Name="*.DFI" />
-      <FileCopy Name="/irisdev/app/export.csv" Target="/opt/irisapp/export.csv"/>
+      <FileCopy Name="export.csv" Target="/opt/irisapp/export.csv"/>
       <Invokes>
         <Invoke Class="Riches.Util" Method="InstallHelper"></Invoke>
       </Invokes>
