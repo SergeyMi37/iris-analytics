@@ -220,6 +220,17 @@ ClassMethod ImportCSV(
 	Quit $$$OK
 }
 
+ClassMethod InstallHelper() As %Status
+{
+	Set tSC = $$$OK
+	Do EnableDeepSee^%SYS.cspServer("/csp/irisapp/")
+	//Set tSC = ##class(Riches.Util).SQLGrantAccess()
+	Set tSC = ##class(Riches.Util).ImportCSV()
+	Kill ^TESTunit
+	Set tSC = ##class(%DeepSee.Utils).%BuildCube("iris-for-money")
+	Quit tSC
+}
+
 ClassMethod OutputDebug(
 	pAccount As %String = "",
 	pTable As %String = "",
