@@ -215,8 +215,6 @@ ClassMethod ImportCSV(
 	} Catch {
 	}
 	Close pCSV
-	Write $Get(headers),!
-	Write $Get(rows)," rows imported",!
 	Quit $$$OK
 }
 
