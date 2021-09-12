@@ -6,8 +6,8 @@ services:
       dockerfile: Dockerfile
     restart: always
     ports: 
-      - 1972
+      - 49158:1972
       - 32792:52773
-      - 49158:51773
+      - 53773
     volumes:
       - ./:/irisdev/app
