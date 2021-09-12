@@ -1,6 +1,6 @@
 ARG IMAGE=intersystemsdc/iris-community:2020.4.0.547.0-zpm
 ARG IMAGE=intersystemsdc/iris-community
-ARG IMAGE=intersystemsdc/iris-community:2020.1.0.215.0-zpm
+# ARG IMAGE=intersystemsdc/iris-community:2020.1.0.215.0-zpm
 FROM $IMAGE
 
 USER root
