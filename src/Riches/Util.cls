@@ -143,9 +143,18 @@ ClassMethod GetOptionsTableNames(
 }
 
 ClassMethod ImportCSV(
-	pCSV = "/opt/irisapp/export.csv",
+	pCSV As %String = "",
 	pMaxRows As %Integer = 9999) As %Status
 {
+	If (pCSV = "") {
+		Set tExport = "/usr/irissys/lib/export.csv"
+		If ##class(%File).Exists(tExport) Set pCSV = tExport
+	}
+	If (pCSV = "") {
+		Set tExport = "/opt/irisapp/export.csv"
+		If ##class(%File).Exists(tExport) Set pCSV = tExport
+	}
+	Write "ImportCSV ",pCSV,!
 	Set timeout = 1
 	Open pCSV:("R"):timeout  // read
 	If ($TEST = 0) {
@@ -153,6 +162,7 @@ ClassMethod ImportCSV(
 		Write msg,!
 		Quit $$$ERROR($$$GeneralError,msg)
 	}
+	If 
 	Set comma = ","
 	Set rows = -1
 	Set cAccount = 0
