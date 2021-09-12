@@ -151,6 +151,10 @@ ClassMethod ImportCSV(
 		If ##class(%File).Exists(tExport) Set pCSV = tExport
 	}
 	If (pCSV = "") {
+		Set tExport = "/opt/irisapp/data/export.csv"
+		If ##class(%File).Exists(tExport) Set pCSV = tExport
+	}
+	If (pCSV = "") {
 		Set tExport = "/opt/irisapp/export.csv"
 		If ##class(%File).Exists(tExport) Set pCSV = tExport
 	}
