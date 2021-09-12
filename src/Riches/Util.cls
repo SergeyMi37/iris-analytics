@@ -147,7 +147,7 @@ ClassMethod ImportCSV(
 	pMaxRows As %Integer = 9999) As %Status
 {
 	If (pCSV = "") {
-		Set tExport = "/usr/irissys/lib/data/export.csv"
+		Set tExport = "/usr/irissys/lib/irisapp/data/export.csv"
 		If ##class(%File).Exists(tExport) Set pCSV = tExport
 	}
 	If (pCSV = "") {
