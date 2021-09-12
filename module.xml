@@ -3,13 +3,13 @@
   <Document name="iris-analytics.ZPM">
     <Module>
       <Name>iris-analytics</Name>
-      <Version>0.2.5</Version>
+      <Version>0.2.6</Version>
       <Description>IRIS Analytics for Money</Description>
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
       <Resource Name="Riches.PKG"/>
       <Parameter Name="folder" Value="irisapp"/>
-      <FileCopy Name="data/export.csv" Target="${libdir}/${folder}/data/"/>
+      <FileCopy Name="data" Target="${libdir}/${folder}/data/"/>
       <Invokes>
         <Invoke Class="Riches.Util" Method="InstallHelper"></Invoke>
       </Invokes>
