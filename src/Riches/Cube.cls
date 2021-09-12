@@ -5,7 +5,7 @@ Class Riches.Cube Extends %DeepSee.CubeDefinition [ DependsOn = Riches.Transact,
 /// Cube definition from Architect.
 XData Cube [ XMLNamespace = "http://www.intersystems.com/deepsee" ]
 {
-<cube xmlns="http://www.intersystems.com/deepsee" name="iris-for-money" displayName="iris-for-money" disabled="false" abstract="false" sourceClass="Riches.Transact" namedFactNums="true" countMeasureName="%COUNT" bucketSize="8" bitmapChunkInMemory="false" precompute="0" disableListingGroups="false" enableSqlRestrict="false">
+<cube xmlns="http://www.intersystems.com/deepsee" name="iris4money" displayName="iris-for-money" disabled="false" abstract="false" sourceClass="Riches.Transact" namedFactNums="true" countMeasureName="%COUNT" bucketSize="8" bitmapChunkInMemory="false" precompute="0" disableListingGroups="false" enableSqlRestrict="false">
   <dimension name="CategoryD" disabled="false" hasAll="false" allCaption="All Nickname" allDisplayName="Nickname" type="data" calendar="gregorian" iKnowType="entity" hidden="false" showHierarchies="default">
     <hierarchy name="H1" disabled="false" hidden="false">
       <level name="Category" disabled="false" sourceProperty="Category.Nickname" list="false" useDisplayValue="true" useAsFilter="true" hidden="false" factNumber="4">
