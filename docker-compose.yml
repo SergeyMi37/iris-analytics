@@ -4,6 +4,8 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile
+    command: "-b /opt/irisapp/hostname.sh"
+    init: true
     restart: always
     ports: 
       - 49158:1972
@@ -11,3 +13,4 @@ services:
       - 53773
     volumes:
       - ./:/irisdev/app
+      - /tmp:/shared
