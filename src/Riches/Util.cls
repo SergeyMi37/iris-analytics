@@ -1,9 +1,7 @@
 Class Riches.Util
 {
 
-ClassMethod DebugMerge(
-	strMessage As %String = "",
-	ByRef pArray) As %Status
+ClassMethod DebugMerge(strMessage As %String = "", ByRef pArray) As %Status
 {
 	Merge ^TESTunit($I(^TESTunit)) = pArray
 	Set tValue = ""
@@ -38,9 +36,7 @@ ClassMethod GetStatusText(pStatus As %Status) As %String
 	Quit tReturn
 }
 
-ClassMethod EncodeLogicalDisplay(
-	pLogical As %String = "",
-	pDisplay As %String = "") As %String
+ClassMethod EncodeLogicalDisplay(pLogical As %String = "", pDisplay As %String = "") As %String
 {
 	Set delim = "^"
 	If (pLogical [ delim) {
@@ -53,9 +49,7 @@ ClassMethod EncodeLogicalDisplay(
 	Quit tLogicalDisplay
 }
 
-ClassMethod ExecuteQueryOneValue(
-	pQuery As %String,
-	ByRef pResult As %String) As %Status
+ClassMethod ExecuteQueryOneValue(pQuery As %String, ByRef pResult As %String) As %Status
 {
 	Do ..DebugTEST("Riches.Util - ExecuteQueryOneValue")
 	Do ..DebugTEST("pQuery = "_pQuery)
@@ -86,9 +80,7 @@ ClassMethod GetDateValue(pValue As %String) As %Date
 	Quit $Get(tDate,0)
 }
 
-ClassMethod GetOptionsTableColumns(
-	pClassname As %String = "",
-	Output pOptions As %String) As %String
+ClassMethod GetOptionsTableColumns(pClassname As %String = "", Output pOptions As %String) As %String
 {
 	/*
 	Set q = """"
@@ -120,9 +112,7 @@ ClassMethod GetOptionsTableColumns(
 	Quit pOptions
 }
 
-ClassMethod GetOptionsTableNames(
-	pSelected As %String = "",
-	Output pOptions As %String) As %String
+ClassMethod GetOptionsTableNames(pSelected As %String = "", Output pOptions As %String) As %String
 {
 	/*
   <option value="Riches.Category">Category</option>
@@ -142,9 +132,7 @@ ClassMethod GetOptionsTableNames(
 	Quit pOptions
 }
 
-ClassMethod ImportCSV(
-	pCSV As %String = "",
-	pMaxRows As %Integer = 9999) As %Status
+ClassMethod ImportCSV(pCSV As %String = "", pMaxRows As %Integer = 9999) As %Status
 {
 	If (pCSV = "") {
 		Set tExport = "/usr/irissys/lib/irisapp/export.CSV"
@@ -158,6 +146,11 @@ ClassMethod ImportCSV(
 		Set tExport = "/opt/irisapp/export.CSV"
 		If ##class(%File).Exists(tExport) Set pCSV = tExport
 	}
+	If (pCSV = "") {
+		Set tExport = ##class(%File).GetDirectory(##class(%File).NormalizeDirectory("lib", ##class(%File).GetDirectory($zu(86)))_"irisapp")_"export.CSV"
+		If ##class(%File).Exists(tExport) Set pCSV = tExport
+	}
+	If (pCSV = "") Quit $$$ERROR($$$GeneralError,"file not found")
 	Write "ImportCSV ",pCSV,!
 	Set timeout = 1
 	Open pCSV:("R"):timeout  // read
@@ -243,10 +236,7 @@ ClassMethod InstallHelper() As %Status
 	Quit tSC
 }
 
-ClassMethod OutputDebug(
-	pAccount As %String = "",
-	pTable As %String = "",
-	pDebug As %String = "") As %Status
+ClassMethod OutputDebug(pAccount As %String = "", pTable As %String = "", pDebug As %String = "") As %Status
 {
 	Do ..DebugTEST("Riches.Util - OutputDebug")
 	Do ..DebugTEST("pAccount = "_pAccount)
@@ -274,13 +264,7 @@ ClassMethod OutputDebug(
 	Quit $$$OK
 }
 
-ClassMethod OutputDebugLine(
-	pDebugLine As %String = "",
-	pHeader As %String = 0,
-	pId As %String = "",
-	pAccount As %String = "",
-	pTable As %String = "",
-	pDebug As %String = 0) As %Status
+ClassMethod OutputDebugLine(pDebugLine As %String = "", pHeader As %String = 0, pId As %String = "", pAccount As %String = "", pTable As %String = "", pDebug As %String = 0) As %Status
 {
 	Do:pDebug ..DebugTEST("Riches.Util - OutputDebugLine")
 	Do:pDebug ..DebugTEST("pDebugLine = "_pDebugLine)
@@ -339,10 +323,7 @@ ClassMethod OutputDebugLine(
 	Quit $$$OK
 }
 
-ClassMethod OutputDebugPiece(
-	pDebugPiece As %String = "",
-	pHeader As %String = 0,
-	pDebug As %String = 0) As %Status
+ClassMethod OutputDebugPiece(pDebugPiece As %String = "", pHeader As %String = 0, pDebug As %String = 0) As %Status
 {
 	Do:pDebug ..DebugTEST("Riches.Util - OutputDebugPiece")
 	Do:pDebug ..DebugTEST("pDebugPiece = "_pDebugPiece)
@@ -362,10 +343,7 @@ ClassMethod OutputDebugPiece(
 	Quit $$$OK
 }
 
-ClassMethod OutputRadio(
-	pName As %String = "",
-	pID As %String = "",
-	pCaption As %String) As %Status
+ClassMethod OutputRadio(pName As %String = "", pID As %String = "", pCaption As %String) As %Status
 {
 	Set q = """"
 	Set qRadio = q_"radio"_q
@@ -376,11 +354,7 @@ ClassMethod OutputRadio(
 	Quit $$$OK
 }
 
-ClassMethod OutputSelectTable(
-	pName As %String = "iTable",
-	pID As %String = "iTable",
-	pCaption As %String = "Insert into table:",
-	pSelected As %String) As %Status
+ClassMethod OutputSelectTable(pName As %String = "iTable", pID As %String = "iTable", pCaption As %String = "Insert into table:", pSelected As %String) As %Status
 {
 	/*
 <label for="iTable">Insert into table:</label>
@@ -404,9 +378,7 @@ ClassMethod OutputSelectTable(
 	Quit $$$OK
 }
 
-ClassMethod QuoteJSLogicalDisplay(
-	pLogical As %String = "",
-	pDisplay As %String = "") As %String
+ClassMethod QuoteJSLogicalDisplay(pLogical As %String = "", pDisplay As %String = "") As %String
 {
 	Set tLogicalDisplay = ..EncodeLogicalDisplay(pLogical,pDisplay)
 	Quit ##class(%CSP.Page).QuoteJS(tLogicalDisplay)
@@ -419,11 +391,7 @@ ClassMethod SQLGrantAccess() As %Status
 	Quit $$$OK
 }
 
-ClassMethod UnQuote(
-	pQuote As %String = "",
-	Output pUnQuote As %String,
-	pOutQuote As %String = "",
-	pVerbose As %Integer = 0) As %Status
+ClassMethod UnQuote(pQuote As %String = "", Output pUnQuote As %String, pOutQuote As %String = "", pVerbose As %Integer = 0) As %Status
 {
 	Do:pVerbose ..DebugTEST("Riches.Util - UnQuote")
 	Do:pVerbose ..DebugTEST("pQuote = "_pQuote)
@@ -472,3 +440,4 @@ ClassMethod UnQuote(
 }
 
 }
+
